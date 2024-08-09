@@ -1,19 +1,16 @@
 import numpy as np
 import math
 import copy
-import sys
-import util
 
 class LQR():
     """
     """
-    def init(self,Fx,Fu,d,Hxx,Huu,Hxu,gx,gu,Hxx_N,Huu_N,x0,N):
+    def init(self,Fx,Fu,Hxx,Huu,Hxu,gx,gu,Hxx_N,Huu_N,x0,N):
         ""
         # The dynamic programming notation to initialize an iLQR class
         ""
         self.Fx = Fx
         self.Fu = Fu
-        self.d = d
         self.Hxx = Hxx
         self.Huu = Huu
         self.Hxu = Hxu
@@ -25,13 +22,12 @@ class LQR():
         self.Hxx_N = Hxx_N
         self.gx_N = Huu_N
         self.x0 = x0
-    def init(self,A,B,d,Q,R,M,q,r,Q_N,q_N,x0,N):
+    def init(self,A,B,Q,R,M,q,r,Q_N,q_N,x0,N):
         ""
         # The conventional LQR notation to initialize the iLQR class (overloading)
         ""
         self.Fx = A
         self.Fu = B
-        self.d = d
         self.Hxx = Q
         self.Huu = R
         self.Hxu = M
@@ -73,9 +69,7 @@ class LQR():
         u = np.zeros(np.zeros(m,1),N)
         for i in range(0,N):
             u[i] = K[i].dot(x[i]) + k[i]
-            x[i+1] = Fx.dot(x[i]) + Fu.dot(u[i]) + d[i]
+            x[i+1] = Fx.dot(x[i]) + Fu.dot(u[i])
         return x,u,P,p
-    def lqr_dual_solve():
-        # Backward pass of the dual
 
     
